@@ -1,0 +1,176 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Urban Housing</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url('urban-city.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      text-align: center;
+    }
+    .container {
+      width: 80%;
+      margin: auto;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      margin-top: 30px;
+    }
+    .header {
+      background-color: #00fff7;
+      color: white;
+      padding: 20px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .form-group {
+      margin: 15px 0;
+      text-align: left;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input[type="number"], select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    .buttons {
+      margin-top: 30px;
+    }
+    .button {
+      display: inline-block;
+      margin: 10px;
+      padding: 15px 30px;
+      font-size: 18px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+    .button:hover {
+      background-color: #0056b3;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .data-section {
+      text-align: left;
+      margin-top: 40px;
+      background-color: rgba(240, 248, 255, 0.85);
+      padding: 20px;
+      border-radius: 10px;
+    }
+    .data-section h3 {
+      color: #007BFF;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    table, th, td {
+      border: 1px solid #007BFF;
+    }
+    th, td {
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #007BFF;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">Urban Housing</div>
+  <div class="container">
+    <h2>Predict House Prices in Urban Area</h2>
+    <div class="form-group">
+      <label for="bhk">Number of BHK:</label>
+      <input type="number" id="bhk" placeholder="Enter number of BHK" />
+    </div>
+    <div class="form-group">
+      <label for="rate">Rate per Sq.Ft (in ₹):</label>
+      <input type="number" id="rate" placeholder="Enter rate per sq.ft" />
+    </div>
+    <div class="form-group">
+      <label for="area">Area (in Sq.Ft):</label>
+      <input type="number" id="area" placeholder="Enter area in sq.ft" />
+    </div>
+    <div class="form-group">
+      <label for="location">Location:</label>
+      <select id="location">
+        <option value="">Select Location</option>
+        <option value="Pimpri">Pimpri</option>
+        <option value="Chinchwad">Chinchwad</option>
+        <option value="Akurdi">Akurdi</option>
+        <option value="Ravet">Ravet</option>
+        <option value="Wakad">Wakad</option>
+      </select>
+    </div>
+    <div class="buttons">
+      <button class="button" onclick="predictPrice()">Predict Price</button>
+      <a href="index.html" class="button">Back to Home</a>
+    </div>
+    <div class="result" id="result"></div>
+    <div class="data-section">
+      <h3>Full Price Prediction for Pimpri Chinchwad </h3>
+      <table>
+        <tr>
+          <th>Location</th>
+          <th>Past Rate</th>
+          <th>Past Price</th>
+          <th>Present Rate</th>
+          <th>Present Price</th>
+          <th>Future Rate</th>
+          <th>Future Price</th>
+        </tr>
+        <tr><td>Pimpri</td><td>₹3,200</td><td>₹24,00,000 - ₹28,00,000</td><td>₹6,200</td><td>₹50,00,000 - ₹65,00,000</td><td>₹9,000</td><td>₹75,00,000 - ₹95,00,000</td></tr>
+        <tr><td>Chinchwad</td><td>₹3,500</td><td>₹26,00,000 - ₹30,00,000</td><td>₹6,500</td><td>₹52,00,000 - ₹68,00,000</td><td>₹9,500</td><td>₹78,00,000 - ₹98,00,000</td></tr>
+        <tr><td>Akurdi</td><td>₹3,000</td><td>₹22,00,000 - ₹27,00,000</td><td>₹5,800</td><td>₹45,00,000 - ₹60,00,000</td><td>₹8,800</td><td>₹70,00,000 - ₹90,00,000</td></tr>
+        <tr><td>Ravet</td><td>₹4,000</td><td>₹30,00,000 - ₹36,00,000</td><td>₹7,200</td><td>₹55,00,000 - ₹75,00,000</td><td>₹10,200</td><td>₹85,00,000 - ₹1,01,00,000</td></tr>
+        <tr><td>Wakad</td><td>₹4,500</td><td>₹34,00,000 - ₹38,00,000</td><td>₹7,500</td><td>₹60,00,000 - ₹80,00,000</td><td>₹10,500</td><td>₹90,00,000 - ₹1,02,00,000</td></tr>
+      </table>
+    </div>
+  </div>
+  <script>
+    function predictPrice() {
+      const bhk = parseFloat(document.getElementById('bhk').value);
+      const rate = parseFloat(document.getElementById('rate').value);
+      const area = parseFloat(document.getElementById('area').value);
+      const location = document.getElementById('location').value;if (isNaN(bhk) || isNaN(rate) || isNaN(area) || location === "") {
+    document.getElementById('result').innerText = "Please enter all values correctly and select a location.";
+    return;
+  }
+
+  const basePrice = rate * area;
+  const pastPrice = basePrice * 0.85;
+  const presentPrice = basePrice;
+  const futurePrice = basePrice * 1.15;
+
+  document.getElementById('result').innerHTML = `
+    <p>Estimated Price for <strong>${bhk} BHK</strong> at <strong>${location}</strong> with <strong>${area} sq.ft</strong> area:</p>
+    <p>Past Price: ₹${pastPrice.toLocaleString()}</p>
+    <p>Present Price: ₹${presentPrice.toLocaleString()}</p>
+    <p>Future Price: ₹${futurePrice.toLocaleString()}</p>
+  `;
+}
+
+  </script>
+</body>
+</html>
